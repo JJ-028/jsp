@@ -1,0 +1,225 @@
+<!DOCTYPE html> <!-- Page web moderne (HTML5) -->
+<!--
+  OUTIL DE CHIFFREMENT DE L'ESPACE JSP
+  Il s'ouvre par un double-clic, dans ton navigateur (Chrome, Edge, Firefox...). Rien à installer.
+  Tout se passe sur TON ordinateur : aucun fichier ni mot de passe n'est envoyé sur internet.
+  Cet outil peut rester sur ton ordinateur : il ne contient aucun secret.
+-->
+<html lang="fr"> <!-- Début de la page, en français -->
+<head> <!-- Infos techniques -->
+<meta charset="utf-8"> <!-- Affiche correctement les accents -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Adapte la page à la largeur de l'écran -->
+<title>Outil de chiffrement – Espace JSP</title> <!-- Titre de l'onglet -->
+<style> /* Début du style de l'outil (couleurs et mise en page) */
+  :root{ --bleu:#12296B; --rouge:#D71920; --crème:#F6F5F1; } /* couleurs du site : bleu pompier, rouge feu, blanc crème */
+  *{ box-sizing:border-box; } /* la largeur d'un bloc inclut son contour */
+  body{ margin:0; font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif; background:var(--crème); color:#1B1D20; line-height:1.6; } /* police, fond crème, texte presque noir */
+  header{ background:var(--bleu); color:#fff; padding:1.4rem 1rem; border-bottom:8px solid var(--rouge); } /* bandeau bleu avec un trait rouge dessous */
+  header h1{ margin:0 auto; max-width:760px; font-size:1.6rem; } /* titre du bandeau, centré */
+  main{ max-width:760px; margin:0 auto; padding:1.5rem 1rem 4rem; } /* zone de contenu centrée */
+  .etape{ background:#fff; border-left:8px solid var(--bleu); padding:1.2rem 1.4rem; margin-bottom:1.2rem; box-shadow:0 2px 8px rgba(18,41,107,.12); } /* une étape = une carte blanche à barre bleue */
+  .etape h2{ margin:0 0 .5rem; font-size:1.15rem; color:var(--bleu); } /* titre d'une étape */
+  .etape p{ margin:.3rem 0 .7rem; } /* espacement des phrases */
+  input[type=text],input[type=password]{ width:100%; padding:.6rem; font-size:1rem; border:2px solid #B9C3DD; border-radius:4px; margin-bottom:.6rem; } /* cases de texte */
+  button{ background:var(--rouge); color:#fff; border:0; padding:.8rem 1.6rem; font-size:1.1rem; font-weight:700; border-radius:4px; cursor:pointer; } /* gros bouton rouge */
+  button:disabled{ opacity:.6; cursor:wait; } /* bouton grisé pendant le travail */
+  #resultat{ margin-top:1rem; padding:1rem 1.2rem; background:#fff; border-left:8px solid #999; display:none; } /* zone de résultat, cachée au départ */
+  #resultat.ok{ border-color:#2E9B3E; display:block; } /* résultat réussi : barre verte */
+  #resultat.erreur{ border-color:var(--rouge); display:block; } /* résultat en erreur : barre rouge */
+  #resultat.alerte{ border-color:#F28C00; display:block; } /* avertissement : barre orange */
+  .petit{ font-size:.9rem; color:#4A4F5E; } /* petit texte gris */
+</style> <!-- Fin du style -->
+</head> <!-- Fin des infos techniques -->
+<body> <!-- Début de la partie visible -->
+
+<header><h1>Outil de chiffrement de l’espace JSP</h1></header> <!-- Bandeau du haut avec le titre -->
+
+<main> <!-- Contenu principal -->
+
+  <p>Cet outil fabrique la version <strong>protégée par mot de passe</strong> de l’espace JSP, avec les documents PDF à l’intérieur. Tout se passe sur ton ordinateur : rien n’est envoyé sur internet.</p> <!-- Explication de l'outil -->
+
+  <section class="etape"> <!-- Étape 1 -->
+    <h2>Étape 1 : choisis la page de l’espace JSP</h2> <!-- Titre de l'étape 1 -->
+    <p>C’est le fichier <strong>espace-jsp.html</strong> du dossier <strong>prive</strong> (celui que tu modifies).</p> <!-- Explication -->
+    <input type="file" id="page" accept=".html,.htm"> <!-- Bouton pour choisir la page HTML -->
+  </section> <!-- Fin de l'étape 1 -->
+
+  <section class="etape"> <!-- Étape 2 -->
+    <h2>Étape 2 : choisis tes documents PDF (facultatif)</h2> <!-- Titre de l'étape 2 -->
+    <p>Ouvre le dossier <strong>prive/docs</strong>, sélectionne tous les PDF d’un coup (Ctrl + A), puis valide. Leur nom doit être le même que dans la page.</p> <!-- Explication -->
+    <input type="file" id="pdfs" accept=".pdf,application/pdf" multiple> <!-- Bouton pour choisir plusieurs PDF -->
+  </section> <!-- Fin de l'étape 2 -->
+
+  <section class="etape"> <!-- Étape 3 -->
+    <h2>Étape 3 : choisis le mot de passe</h2> <!-- Titre de l'étape 3 -->
+    <p>C’est le mot de passe que les jeunes taperont pour entrer. Écris-le deux fois.</p> <!-- Explication -->
+    <input type="password" id="mdp1" placeholder="Mot de passe" autocomplete="new-password"> <!-- Case du mot de passe -->
+    <input type="password" id="mdp2" placeholder="Mot de passe (encore une fois)" autocomplete="new-password"> <!-- Case de vérification -->
+    <p class="petit">Conseil : plus il est long, plus il est solide. Un mot de passe court comme 123 se devine en quelques secondes : prends-le seulement pour tester.</p> <!-- Conseil de sécurité -->
+  </section> <!-- Fin de l'étape 3 -->
+
+  <button id="go">Chiffrer et télécharger espace-jsp.html</button> <!-- Le gros bouton qui lance tout -->
+  <div id="resultat" role="status" aria-live="polite"></div> <!-- Zone où s'affichent les messages -->
+
+  <section class="etape" style="margin-top:2rem"> <!-- Étape 4 : explication de la suite -->
+    <h2>Ensuite</h2> <!-- Titre -->
+    <p>Le fichier <strong>espace-jsp.html</strong> est téléchargé. Mets-le <strong>à la racine du dépôt GitHub</strong> (à côté de index.html) : il remplace l’ancien. Ne publie jamais le dossier <strong>prive</strong>.</p> <!-- Que faire du fichier -->
+  </section> <!-- Fin de l'étape 4 -->
+
+</main> <!-- Fin du contenu principal -->
+
+<script> // Début du programme de l'outil (JavaScript)
+
+const ITERATIONS = 600000; // nombre de calculs imposés pour chaque essai de mot de passe : plus il est grand, plus c'est lent à deviner
+
+function versBase64(octets){ // transforme des données en texte (base64) pour les ranger dans la page
+  let texte = ''; // le texte qu'on construit
+  const taille = 0x8000; // on traite les données par morceaux de 32 768 octets
+  for (let i = 0; i < octets.length; i += taille){ // pour chaque morceau
+    texte += String.fromCharCode.apply(null, octets.subarray(i, i + taille)); // on le convertit en caractères
+  } // fin de la boucle
+  return btoa(texte); // on encode le tout en base64
+} // fin de la fonction
+
+async function chiffrer(texteClair, motDePasse){ // chiffre un texte avec un mot de passe (AES-256 + PBKDF2)
+  const enc = new TextEncoder(); // outil qui transforme du texte en octets
+  const sel = crypto.getRandomValues(new Uint8Array(16)); // « sel » aléatoire : deux chiffrements du même texte sont différents
+  const iv = crypto.getRandomValues(new Uint8Array(12)); // valeur de départ aléatoire du chiffrement
+  const matiere = await crypto.subtle.importKey('raw', enc.encode(motDePasse), 'PBKDF2', false, ['deriveKey']); // prépare le mot de passe
+  const cle = await crypto.subtle.deriveKey( // fabrique la vraie clé de chiffrement à partir du mot de passe
+    { name: 'PBKDF2', salt: sel, iterations: ITERATIONS, hash: 'SHA-256' }, // méthode : PBKDF2 avec SHA-256
+    matiere, // le mot de passe préparé
+    { name: 'AES-GCM', length: 256 }, // clé de 256 bits pour le chiffrement AES-GCM
+    false, // la clé ne peut pas être exportée
+    ['encrypt'] // elle ne sert qu'à chiffrer
+  ); // fin de la fabrication de la clé
+  const chiffre = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, cle, enc.encode(texteClair))); // chiffre la page
+  return { s: versBase64(sel), i: versBase64(iv), c: versBase64(chiffre), n: ITERATIONS }; // renvoie tout ce qu'il faut pour déchiffrer (sauf le mot de passe)
+} // fin de la fonction
+
+function pageMotDePasse(donnees){ // fabrique la page qui demande le mot de passe puis affiche l'espace JSP
+  const FIN_SCRIPT = '<\/script>'; // la fin d'un script, écrite de façon à ne pas couper celui-ci
+  return '<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n' + // début de la page
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' + // adaptée au téléphone
+    '<meta name="robots" content="noindex, nofollow">\n' + // pas de référencement Google
+    '<title>Espace JSP – accès protégé</title>\n' + // titre de l'onglet
+    '<style>\n' + // début du style de la page de mot de passe
+    '*{box-sizing:border-box}\n' + // la largeur d'un élément inclut son contour (sinon la case dépasse du bouton)
+    'body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#12296B,#0B1B4A);color:#1B1D20}\n' + // fond bleu pompier, carte centrée
+    '.boite{background:#fff;width:min(420px,92%);padding:2rem;border-top:10px solid #D71920;box-shadow:0 20px 50px rgba(0,0,0,.4);text-align:center}\n' + // la carte blanche
+    '.boite img{height:90px;width:auto;margin:0 auto 1rem}\n' + // le logo
+    'h1{margin:0 0 .5rem;font-size:1.7rem;color:#12296B;text-transform:uppercase}\n' + // le titre
+    'p{margin:.4rem 0 1.2rem}\n' + // les phrases
+    'input{width:100%;padding:.8rem;font-size:1.1rem;border:2px solid #B9C3DD;border-radius:4px;margin-bottom:.8rem}\n' + // la case du mot de passe
+    'button{width:100%;background:#D71920;color:#fff;border:0;padding:.8rem;font-size:1.15rem;font-weight:700;border-radius:4px;cursor:pointer}\n' + // le bouton Entrer
+    'button:disabled{opacity:.6}\n' + // bouton grisé pendant la vérification
+    '#e{color:#D71920;font-weight:600;min-height:1.5rem;margin:.8rem 0 0}\n' + // le message d\'erreur
+    'a{color:#12296B}\n' + // les liens
+    '</style>\n</head>\n<body>\n' + // fin du style, début de la partie visible
+    '<main class="boite">\n' + // la carte
+    '<img src="images/logo.png" alt="" onerror="this.style.display=\'none\'">\n' + // le logo, caché s'il manque
+    '<h1>Espace JSP</h1>\n' + // le titre
+    '<p>Entre le mot de passe donné par les encadrants.</p>\n' + // la consigne
+    '<form id="f">\n' + // le formulaire
+    '<input type="password" id="m" placeholder="Mot de passe" autocomplete="current-password" required autofocus>\n' + // la case
+    '<button type="submit" id="b">Entrer</button>\n' + // le bouton
+    '</form>\n' + // fin du formulaire
+    '<p id="e" role="alert"></p>\n' + // la zone d'erreur
+    '<p><a href="index.html">Retour au site</a></p>\n' + // lien de retour
+    '</main>\n' + // fin de la carte
+    '<script>\n' + // début du programme de déchiffrement
+    '(function(){\n' + // on enferme le programme dans une fonction
+    'var D=' + JSON.stringify(donnees) + ';\n' + // les données chiffrées de la page
+    'var f=document.getElementById("f"),m=document.getElementById("m"),e=document.getElementById("e"),b=document.getElementById("b");\n' + // repère les éléments de la page
+    'function d64(t){var s=atob(t),n=s.length,u=new Uint8Array(n);for(var i=0;i<n;i++)u[i]=s.charCodeAt(i);return u;}\n' + // transforme le base64 en octets
+    'if(!window.crypto||!crypto.subtle){e.textContent="Ton navigateur bloque le déchiffrement. Ouvre le site avec une adresse en https.";b.disabled=true;}\n' + // prévient si le navigateur ne sait pas déchiffrer
+    'f.addEventListener("submit",function(ev){\n' + // quand on valide le formulaire
+    'ev.preventDefault();e.textContent="";b.disabled=true;b.textContent="Vérification…";\n' + // on empêche le rechargement et on affiche « Vérification »
+    'var enc=new TextEncoder();\n' + // outil texte vers octets
+    'crypto.subtle.importKey("raw",enc.encode(m.value),"PBKDF2",false,["deriveKey"])\n' + // prépare le mot de passe tapé
+    '.then(function(k){return crypto.subtle.deriveKey({name:"PBKDF2",salt:d64(D.s),iterations:D.n,hash:"SHA-256"},k,{name:"AES-GCM",length:256},false,["decrypt"]);})\n' + // fabrique la clé avec le même calcul qu'au chiffrement
+    '.then(function(k){return crypto.subtle.decrypt({name:"AES-GCM",iv:d64(D.i)},k,d64(D.c));})\n' + // déchiffre : échoue si le mot de passe est faux
+    '.then(function(buf){var h=new TextDecoder().decode(buf);document.open();document.write(h);document.close();})\n' + // si ça marche, on remplace la page par l'espace JSP
+    '.catch(function(){e.textContent="Mot de passe incorrect.";b.disabled=false;b.textContent="Entrer";m.select();});\n' + // sinon on affiche l'erreur
+    '});\n' + // fin de l'écoute du formulaire
+    '})();\n' + // fin de la fonction et lancement
+    FIN_SCRIPT + '\n</body>\n</html>\n'; // fin du programme et de la page
+} // fin de la fonction
+
+function afficher(type, html){ // affiche un message dans la zone de résultat
+  const zone = document.getElementById('resultat'); // repère la zone
+  zone.className = type; // change sa couleur : ok, alerte ou erreur
+  zone.innerHTML = html; // écrit le message
+} // fin de la fonction
+
+function echapper(texte){ // rend un texte sans danger avant de l'afficher
+  return texte.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); // remplace les signes spéciaux
+} // fin de la fonction
+
+async function fabriquer(){ // le programme principal, lancé par le gros bouton
+  const fichierPage = document.getElementById('page').files[0]; // la page choisie à l'étape 1
+  const pdfs = Array.from(document.getElementById('pdfs').files); // les PDF choisis à l'étape 2
+  const mdp1 = document.getElementById('mdp1').value; // le mot de passe, 1re case
+  const mdp2 = document.getElementById('mdp2').value; // le mot de passe, 2e case
+
+  if (!fichierPage){ afficher('erreur', 'Étape 1 : choisis d’abord la page <strong>espace-jsp.html</strong> du dossier <strong>prive</strong>.'); return; } // il manque la page
+  if (!mdp1){ afficher('erreur', 'Étape 3 : écris un mot de passe.'); return; } // il manque le mot de passe
+  if (mdp1 !== mdp2){ afficher('erreur', 'Les deux mots de passe ne sont pas identiques. Recommence.'); return; } // les deux cases diffèrent
+  if (!window.crypto || !crypto.subtle){ afficher('erreur', 'Ton navigateur ne permet pas le chiffrement ici. Essaie avec Chrome, Edge ou Firefox récents.'); return; } // navigateur trop ancien
+
+  const bouton = document.getElementById('go'); // le gros bouton
+  bouton.disabled = true; bouton.textContent = 'Chiffrement en cours…'; // on le grise pendant le travail
+  try { // on essaie ; en cas de problème on affiche une erreur claire
+    let html = await fichierPage.text(); // lit la page en clair
+    if (html.indexOf('<html') === -1){ throw new Error('Ce fichier ne ressemble pas à une page web.'); } // vérifie que c'est bien une page web
+
+    const parNom = {}; // dictionnaire : nom du PDF vers son fichier
+    pdfs.forEach(function(f){ parNom[f.name] = f; }); // on range chaque PDF choisi sous son nom
+    const integres = []; // la liste des PDF intégrés
+    const manquants = []; // la liste des PDF cités dans la page mais non choisis
+    const motif = /href="docs\/([^"]+\.pdf)"/g; // cherche chaque lien du type href="docs/xxx.pdf"
+    const noms = []; // les noms trouvés dans la page
+    let trouve; // résultat de la recherche
+    while ((trouve = motif.exec(html)) !== null){ noms.push(trouve[1]); } // on note chaque nom de PDF cité dans la page
+    for (const nom of noms){ // pour chaque PDF cité dans la page
+      const fichier = parNom[nom]; // on cherche le fichier choisi qui porte ce nom
+      if (!fichier){ if (manquants.indexOf(nom) === -1){ manquants.push(nom); } continue; } // absent : on le note et on passe au suivant
+      const octets = new Uint8Array(await fichier.arrayBuffer()); // lit le PDF
+      const lienAvant = 'href="docs/' + nom + '"'; // le lien d'origine
+      const lienApres = 'href="#" data-pdf="' + versBase64(octets) + '" download="' + nom + '"'; // le lien qui contient le PDF lui-même
+      html = html.split(lienAvant).join(lienApres); // remplace tous les liens vers ce PDF
+      if (integres.indexOf(nom) === -1){ integres.push(nom); } // on note qu'il est intégré
+    } // fin de la boucle
+
+    if (integres.length > 0){ // si au moins un PDF est intégré, la page a besoin d'un petit programme pour les rendre téléchargeables
+      const FIN_SCRIPT = '<\/script>'; // la fin d'un script, écrite pour ne pas couper celui-ci
+      const petitProgramme = '<script>document.querySelectorAll("a[data-pdf]").forEach(function(a){var s=atob(a.getAttribute("data-pdf")),n=s.length,u=new Uint8Array(n);for(var i=0;i<n;i++)u[i]=s.charCodeAt(i);a.href=URL.createObjectURL(new Blob([u],{type:"application/pdf"}));a.removeAttribute("data-pdf");});' + FIN_SCRIPT; // transforme chaque PDF intégré en vrai fichier téléchargeable
+      html = html.indexOf('</body>') !== -1 ? html.replace('</body>', petitProgramme + '\n</body>') : html + petitProgramme; // ajoute ce programme en bas de la page
+    } // fin du bloc
+
+    const donnees = await chiffrer(html, mdp1); // chiffre la page complète
+    const pageFinale = pageMotDePasse(donnees); // l'emballe dans la page de mot de passe
+    const blob = new Blob([pageFinale], { type: 'text/html' }); // fabrique le fichier à télécharger
+    const lien = document.createElement('a'); // crée un lien de téléchargement invisible
+    lien.href = URL.createObjectURL(blob); // il pointe vers le fichier fabriqué
+    lien.download = 'espace-jsp.html'; // nom du fichier téléchargé
+    document.body.appendChild(lien); lien.click(); lien.remove(); // clique dessus puis le retire
+    setTimeout(function(){ URL.revokeObjectURL(lien.href); }, 10000); // libère la mémoire un peu plus tard
+
+    let message = '<strong>C’est fait.</strong> Le fichier <strong>espace-jsp.html</strong> (' + Math.round(blob.size / 1024) + ' Ko) a été téléchargé.'; // message de réussite
+    message += integres.length ? '<br>Documents intégrés : ' + integres.map(echapper).join(', ') + '.' : '<br>Aucun document PDF intégré.'; // liste des PDF intégrés
+    let type = 'ok'; // par défaut : succès
+    if (manquants.length){ type = 'alerte'; message += '<br><strong>Attention :</strong> ces documents sont cités dans la page mais tu ne les as pas choisis à l’étape 2, leurs liens ne marcheront pas : ' + manquants.map(echapper).join(', ') + '.'; } // avertit des PDF manquants
+    if (mdp1.length < 8){ type = type === 'ok' ? 'alerte' : type; message += '<br><strong>Mot de passe très court :</strong> facile à deviner. Pour de vrais documents, prends au moins 12 caractères.'; } // avertit si le mot de passe est court
+    afficher(type, message); // affiche le bilan
+  } catch (erreur) { // si quelque chose a échoué
+    afficher('erreur', 'Il y a eu un problème : ' + echapper(String(erreur.message || erreur))); // affiche l'erreur
+  } finally { // dans tous les cas
+    bouton.disabled = false; bouton.textContent = 'Chiffrer et télécharger espace-jsp.html'; // on remet le bouton en état
+  } // fin du bloc
+} // fin de la fonction principale
+
+document.getElementById('go').addEventListener('click', fabriquer); // quand on clique sur le bouton, on lance le programme principal
+</script> <!-- Fin du programme -->
+</body> <!-- Fin de la partie visible -->
+</html> <!-- Fin de la page -->

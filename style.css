@@ -1,0 +1,710 @@
+/* =====================================================
+   STYLE.CSS : l'apparence du site (couleurs, tailles, mise en page)
+   Utilisé par index.html ET espace-jsp.html
+   ===================================================== */
+
+/* ---------- 1. VARIABLES (couleurs et polices réutilisées partout) ---------- */
+:root{ /* :root = la racine de la page : on y range nos réglages réutilisables */
+  --bleu:#12296B; /* bleu marine « bleu pompier » */
+  --bleu-fonce:#0B1B4A; /* bleu plus sombre, pour les dégradés */
+  --bleu-clair:#E6ECF8; /* bleu très pâle pour certains fonds */
+  --france-bleu:#0055A4; /* bleu du drapeau français */
+  --france-rouge:#EF4135; /* rouge du drapeau français */
+  --feu:#D71920; /* rouge pompier : boutons, badges */
+  --feu-fonce:#A80F15; /* rouge foncé pour le survol des boutons */
+  --reflet:#F7C600; /* jaune des bandes réfléchissantes */
+  --os:#F6F5F1; /* blanc crème : fond de la page */
+  --texte-sombre:#1B1D20; /* presque noir : texte courant */
+  --gris:#A9B0C2; /* gris-bleu : textes secondaires sur fond bleu */
+  --tricolore:linear-gradient(90deg,var(--france-bleu) 0 33.33%,#fff 33.33% 66.66%,var(--france-rouge) 66.66% 100%); /* bande bleu-blanc-rouge horizontale */
+  --titre:'Barlow Condensed','Arial Narrow',Impact,sans-serif; /* police des titres (avec polices de secours) */
+  --texte:'Barlow',system-ui,-apple-system,'Segoe UI',Arial,sans-serif; /* police du texte (avec polices de secours) */
+}
+
+/* ---------- 2. RÉGLAGES DE BASE ---------- */
+*{ /* * = tous les éléments */
+  box-sizing:border-box; /* la largeur d'un bloc inclut son padding et sa bordure */
+  margin:0; /* supprime les marges par défaut du navigateur */
+}
+html{ /* l'ensemble de la page */
+  scroll-behavior:smooth; /* défilement doux quand on clique sur un lien du menu */
+  scroll-padding-top:5rem; /* la cible d'un lien s'arrête sous l'en-tête fixe */
+}
+body{ /* le corps de la page */
+  font-family:var(--texte); /* police du texte */
+  font-size:1.05rem; /* taille du texte */
+  line-height:1.65; /* espace entre les lignes */
+  color:var(--texte-sombre); /* couleur du texte */
+  background:var(--os); /* fond de la page */
+}
+img{ /* toutes les images */
+  max-width:100%; /* jamais plus larges que leur bloc */
+  display:block; /* supprime le petit espace sous les images */
+}
+a{ /* tous les liens */
+  color:inherit; /* ils gardent la couleur du texte autour */
+}
+:focus-visible{ /* élément sélectionné au clavier (touche Tab) */
+  outline:3px solid var(--reflet); /* contour jaune bien visible */
+  outline-offset:3px; /* petit écart avec l'élément */
+}
+.wrap{ /* conteneur : centre le contenu et limite sa largeur */
+  width:min(1150px,92%); /* 1150 px maximum, sinon 92 % de l'écran */
+  margin-inline:auto; /* marges gauche/droite automatiques = centré */
+}
+
+/* ---------- 3. EN-TÊTE ---------- */
+.entete{ /* la barre du haut */
+  position:sticky; /* reste collée en haut quand on descend */
+  top:0; /* collée tout en haut */
+  z-index:10; /* passe devant le reste */
+  background:var(--bleu); /* fond bleu pompier */
+  color:#fff; /* texte blanc */
+}
+.entete::after{ /* élément ajouté sous l'en-tête : la bande tricolore */
+  content:""; /* contenu vide (obligatoire pour afficher un ::after) */
+  position:absolute; /* placé par rapport à l'en-tête */
+  top:100%; /* juste sous le bas de l'en-tête */
+  left:0; /* depuis le bord gauche */
+  right:0; /* jusqu'au bord droit */
+  height:8px; /* épaisseur */
+  background:var(--tricolore); /* bleu, blanc, rouge */
+}
+.entete .wrap{ /* contenu centré de l'en-tête */
+  display:flex; /* logo et menu côte à côte */
+  align-items:center; /* centrés verticalement */
+  justify-content:space-between; /* logo à gauche, menu à droite */
+  gap:1rem; /* espace minimum entre les deux */
+  flex-wrap:wrap; /* le menu passe à la ligne si manque de place */
+  padding-block:.6rem; /* espace au-dessus et en dessous */
+}
+.marque{ /* bloc logo + nom de l'asso */
+  display:flex; /* logo et texte côte à côte */
+  align-items:center; /* alignés verticalement */
+  gap:.7rem; /* espace entre logo et texte */
+  text-decoration:none; /* pas de soulignement */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  font-size:1.4rem; /* taille */
+  line-height:1.05; /* lignes serrées */
+  text-transform:uppercase; /* majuscules */
+}
+.marque img{ /* le logo */
+  height:48px; /* hauteur */
+  width:auto; /* largeur proportionnelle */
+}
+.marque small{ /* sous-titre sous le nom */
+  display:block; /* passe sous le nom */
+  font-weight:600; /* semi-gras */
+  font-size:.85rem; /* petit */
+  color:var(--reflet); /* jaune */
+}
+.menu{ /* la liste des liens du menu */
+  display:flex; /* liens côte à côte */
+  flex-wrap:wrap; /* retour à la ligne si besoin */
+  gap:.3rem 1.3rem; /* espace vertical puis horizontal */
+  list-style:none; /* pas de puces */
+  padding:0; /* pas de retrait */
+  align-items:center; /* alignés verticalement */
+}
+.menu a{ /* un lien du menu */
+  text-decoration:none; /* pas de soulignement */
+  font-weight:600; /* semi-gras */
+}
+.menu a:hover{ /* souris dessus */
+  color:var(--reflet); /* devient jaune */
+}
+.menu .acces{ /* bouton « Espace JSP » */
+  background:var(--feu); /* fond rouge */
+  padding:.4rem 1rem; /* espace intérieur */
+  border-radius:3px; /* coins légèrement arrondis */
+}
+.menu .acces:hover{ /* souris sur le bouton */
+  background:var(--feu-fonce); /* rouge foncé */
+  color:#fff; /* texte blanc */
+}
+
+/* ---------- 4. BOUTONS ---------- */
+.btn{ /* bouton rouge */
+  display:inline-block; /* bloc de la taille de son texte */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  font-size:1.25rem; /* taille */
+  text-transform:uppercase; /* majuscules */
+  text-decoration:none; /* pas de soulignement */
+  padding:.65rem 1.6rem; /* espace intérieur */
+  border-radius:3px; /* coins légèrement arrondis */
+  background:var(--feu); /* fond rouge */
+  color:#fff; /* texte blanc */
+  border:2px solid var(--feu); /* bordure rouge */
+  transition:background .15s; /* changement de couleur progressif */
+}
+.btn:hover{ /* souris dessus */
+  background:var(--feu-fonce); /* rouge foncé */
+  border-color:var(--feu-fonce); /* bordure assortie */
+}
+.btn.clair{ /* variante transparente à bordure blanche */
+  background:transparent; /* pas de fond */
+  border-color:#fff; /* bordure blanche */
+}
+.btn.clair:hover{ /* souris sur la variante claire */
+  background:#fff; /* fond blanc */
+  color:var(--bleu); /* texte bleu */
+}
+.btn.bleu{ /* variante bleue */
+  background:var(--bleu); /* fond bleu pompier */
+  border-color:var(--bleu); /* bordure assortie */
+}
+.btn.bleu:hover{ /* souris sur la variante bleue */
+  background:var(--bleu-fonce); /* bleu plus sombre */
+  border-color:var(--bleu-fonce); /* bordure assortie */
+}
+
+/* ---------- 5. HERO : grand écran d'accueil ---------- */
+.hero{ /* le grand bloc du haut. NOTE PHOTO : la photo de fond est le fichier images/hero.jpg (dans le dossier images/) ; pour changer de photo, remplace-le ou change son nom dans la ligne « background » plus bas */
+  min-height:88vh; /* au moins 88 % de la hauteur de l'écran */
+  display:flex; /* sert à centrer le contenu verticalement */
+  align-items:center; /* centré verticalement */
+  color:#fff; /* texte blanc */
+  background:linear-gradient(100deg,rgba(11,27,74,.95) 30%,rgba(18,41,107,.5)),url(images/hero.jpg) center/cover no-repeat,var(--bleu); /* voile bleu foncé, puis photo images/hero.jpg, puis bleu uni si la photo manque */
+  padding-block:5rem 8rem; /* espace en haut et en bas (le bas laisse la place au bandeau « L'essentiel ») */
+}
+.hero .wrap{ /* le contenu du hero */
+  display:grid; /* grille à deux colonnes */
+  grid-template-columns:1.4fr 1fr; /* colonne texte plus large que la colonne carte */
+  gap:3rem; /* espace entre les colonnes */
+  align-items:center; /* centrées verticalement */
+}
+.hero h1{ /* le gros titre */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  text-transform:uppercase; /* majuscules */
+  font-size:clamp(2.6rem,7vw,5.4rem); /* très grand mais un peu moins, car le titre est plus long ; adapté à l'écran */
+  line-height:.92; /* lignes serrées */
+  letter-spacing:-.01em; /* lettres un peu rapprochées */
+}
+.hero h1 span{ /* 2e partie du titre */
+  display:block; /* sur sa propre ligne */
+  color:var(--feu); /* texte rouge */
+  background:#fff; /* sur fond blanc */
+  width:fit-content; /* le fond colle au texte */
+  padding:.02em .15em; /* petit espace autour */
+  margin-top:.1em; /* léger écart avec la ligne du dessus */
+}
+.hero p{ /* texte sous le titre */
+  max-width:36rem; /* largeur limitée */
+  font-size:1.2rem; /* un peu plus grand */
+  margin-top:1.5rem; /* écart avec le titre */
+  color:#E4E9F5; /* blanc bleuté */
+}
+.boutons{ /* groupe de boutons */
+  display:flex; /* côte à côte */
+  gap:1rem; /* espace entre eux */
+  flex-wrap:wrap; /* retour à la ligne sur petit écran */
+  margin-top:2rem; /* écart avec le texte */
+}
+.carte-recrut{ /* la carte blanche du prochain recrutement, à droite du hero */
+  background:#fff; /* fond blanc */
+  color:var(--texte-sombre); /* texte sombre */
+  border-top:10px solid var(--feu); /* gros trait rouge au-dessus */
+  padding:2rem; /* espace intérieur */
+  box-shadow:0 20px 50px rgba(0,0,0,.35); /* grande ombre pour la faire ressortir */
+}
+.carte-recrut h2{ /* titre de la carte */
+  font-size:1.8rem; /* plus petit qu'un titre de section */
+  border:0; /* pas de barre à gauche */
+  padding:0; /* pas de retrait */
+  margin-bottom:.6rem; /* espace sous le titre */
+}
+.carte-recrut .date{ /* la date du recrutement */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  font-size:2.6rem; /* grande taille */
+  line-height:1; /* lignes serrées */
+  text-transform:uppercase; /* majuscules */
+  color:var(--feu); /* rouge */
+  margin-bottom:1rem; /* espace sous la date */
+}
+.carte-recrut p{ /* texte de la carte (écrase le style du hero) */
+  font-size:1rem; /* taille normale */
+  color:var(--texte-sombre); /* texte sombre */
+  margin:0 0 1.4rem; /* marge en bas seulement */
+}
+
+/* ---------- 6. BANDEAU « L'ESSENTIEL » ---------- */
+.essentiel{ /* bandeau d'infos qui chevauche le bas du hero */
+  position:relative; /* nécessaire pour utiliser z-index */
+  z-index:2; /* passe devant le hero */
+  margin-top:-4rem; /* remonte sur le hero */
+  background:#fff; /* fond blanc */
+  box-shadow:0 10px 30px rgba(18,41,107,.2); /* ombre bleutée */
+  display:grid; /* grille */
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); /* autant de colonnes que la place permet */
+  border-bottom:6px solid var(--france-bleu); /* trait bleu en bas */
+}
+.essentiel div{ /* chaque info du bandeau */
+  padding:1.3rem 1.5rem; /* espace intérieur */
+}
+.essentiel div+div{ /* toute info qui suit une autre */
+  border-left:1px solid #D5DCEE; /* fine ligne de séparation à gauche */
+}
+.essentiel h3{ /* le titre de chaque info (Âge, Durée...) */
+  color:var(--feu); /* rouge */
+  font-size:1.2rem; /* petit titre */
+  margin-bottom:.1rem; /* petit espace sous le titre */
+}
+.essentiel p{ /* le texte de chaque info */
+  font-weight:600; /* semi-gras */
+  color:var(--bleu); /* bleu pompier */
+  line-height:1.3; /* lignes serrées */
+}
+
+/* ---------- 7. SECTIONS ET TITRES ---------- */
+section{ /* chaque grande section */
+  padding-block:clamp(3.5rem,8vw,6rem); /* espace au-dessus et en dessous */
+}
+h2{ /* titres de section */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  text-transform:uppercase; /* majuscules */
+  font-size:clamp(2.2rem,5vw,3.4rem); /* grande taille adaptée */
+  line-height:1; /* lignes serrées */
+  margin-bottom:1.2rem; /* espace sous le titre */
+  padding-left:.8rem; /* espace entre la barre et le texte */
+  border-left:8px solid var(--france-bleu); /* barre bleue à gauche */
+  color:var(--bleu); /* bleu pompier */
+}
+h3{ /* sous-titres */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  text-transform:uppercase; /* majuscules */
+  font-size:1.6rem; /* taille */
+  line-height:1.1; /* lignes serrées */
+  margin-bottom:.4rem; /* espace sous le sous-titre */
+}
+.deux{ /* mise en page à deux colonnes */
+  display:grid; /* grille */
+  grid-template-columns:1fr 1fr; /* deux colonnes égales */
+  gap:clamp(2rem,5vw,4.5rem); /* espace entre colonnes */
+  align-items:center; /* centrées verticalement */
+}
+.deux p+p{ /* un paragraphe qui suit un autre */
+  margin-top:1rem; /* petit espace entre les deux */
+}
+.photo{ /* cadre photo (ou texte de remplacement) */
+  aspect-ratio:4/3; /* proportions 4 sur 3 */
+  background:var(--bleu) center/cover; /* fond bleu ; l'image éventuelle remplit le cadre */
+  display:grid; /* grille pour centrer le texte... */
+  place-items:center; /* ...au milieu du cadre */
+  color:var(--gris); /* texte gris-bleu */
+  font-size:.95rem; /* petit texte */
+  text-align:center; /* centré */
+  padding:1rem; /* espace intérieur */
+}
+.photo.decale{ /* photo avec un bloc de couleur décalé derrière */
+  box-shadow:16px 16px 0 var(--feu); /* ombre pleine rouge décalée en bas à droite */
+  margin:0 16px 16px 0; /* marge pour que l'ombre ne dépasse pas */
+}
+
+/* ---------- 7 bis. SECTION ASSOCIATION (texte long, Septembre violet) ---------- */
+.deux.haut{ /* variante à deux colonnes où la photo reste en haut */
+  align-items:start; /* colonnes alignées en haut, et non centrées */
+}
+.deux.haut .photo{ /* la photo de cette section */
+  position:sticky; /* reste visible pendant qu'on lit le texte */
+  top:6rem; /* à 6 rem du haut de l'écran, sous le menu */
+}
+.asso-texte h3{ /* les sous-titres de la section association */
+  margin-top:2.4rem; /* grand espace au-dessus pour aérer */
+  margin-bottom:.8rem; /* espace sous le sous-titre */
+  color:var(--bleu); /* bleu pompier */
+}
+.asso-texte h3:first-of-type{ /* le tout premier sous-titre */
+  margin-top:0; /* pas d'espace au-dessus (le titre de section est déjà juste avant) */
+}
+.asso-texte h3.titre-violet{ /* le sous-titre « Septembre violet » */
+  color:#6B3FA0; /* violet, couleur de l'opération */
+}
+.violet{ /* bloc texte + écusson */
+  display:grid; /* grille à deux colonnes */
+  grid-template-columns:1fr 170px; /* texte à gauche, écusson de 170 px à droite */
+  gap:1.5rem; /* espace entre les colonnes */
+  align-items:center; /* centrées verticalement */
+}
+.violet figure{ /* le cadre de l'écusson */
+  text-align:center; /* image et bouton centrés */
+}
+.violet img{ /* l'image de l'écusson */
+  width:100%; /* prend toute la largeur de la colonne */
+  height:auto; /* hauteur proportionnelle */
+}
+.violet .btn{ /* le bouton « Commander un écusson » */
+  margin-top:.8rem; /* espace au-dessus du bouton */
+  font-size:1rem; /* texte plus petit */
+  padding:.5rem 1rem; /* bouton plus compact */
+}
+
+/* ---------- 8. FORMATION (fond bleu avec bords en diagonale) ---------- */
+.formation{ /* section formation */
+  position:relative; /* nécessaire pour utiliser z-index */
+  z-index:1; /* passe devant les sections voisines qui la chevauchent */
+  color:#fff; /* texte blanc */
+  background:linear-gradient(180deg,var(--bleu),var(--bleu-fonce)); /* dégradé de bleu */
+  clip-path:polygon(0 4vw,100% 0,100% calc(100% - 4vw),0 100%); /* découpe les bords haut et bas en diagonale */
+  margin-block:-4vw; /* remonte et descend pour que les diagonales s'emboîtent avec les sections voisines */
+  padding-block:calc(4vw + 4rem); /* espace pour ne pas couper le contenu */
+}
+.formation h2{ /* titre dans la formation */
+  color:#fff; /* blanc */
+  border-color:var(--feu); /* barre rouge */
+}
+.formation-grille{ /* grille : texte à gauche, frise à droite */
+  display:grid; /* grille */
+  grid-template-columns:1fr 1.2fr; /* colonne frise un peu plus large */
+  gap:4rem; /* espace entre colonnes */
+  align-items:start; /* alignées en haut */
+}
+.formation-grille p{ /* texte d'intro */
+  color:#DCE3F5; /* blanc bleuté */
+}
+.formation-grille p+p{ /* un paragraphe qui suit un autre dans l'intro */
+  margin-top:1rem; /* espace entre les deux paragraphes */
+}
+.chrono{ /* frise verticale des 5 grades */
+  list-style:none; /* pas de puces */
+  margin:0; /* pas de marge */
+  padding:0 0 0 2.4rem; /* retrait à gauche pour la place des carrés de grade */
+  border-left:4px solid var(--reflet); /* ligne verticale jaune */
+}
+.chrono li{ /* un grade */
+  position:relative; /* sert de repère pour le carré de couleur */
+  padding-bottom:2.4rem; /* espace avec le grade suivant */
+}
+.chrono li:last-child{ /* la dernière année */
+  padding-bottom:0; /* pas d'espace en dessous */
+}
+.chrono li::before{ /* le carré de couleur posé sur la ligne */
+  content:""; /* contenu vide : c'est juste un carré coloré */
+  position:absolute; /* placé par rapport au grade */
+  top:.15rem; /* un peu sous le haut du grade */
+  left:calc(-2.4rem - 2px - 1.1rem); /* centré exactement sur la ligne jaune */
+  width:2.2rem; /* largeur du carré */
+  height:2.2rem; /* hauteur du carré */
+  border:3px solid #fff; /* contour blanc, pour bien voir même le carré noir */
+  border-radius:3px; /* coins à peine arrondis */
+  background:#fff; /* couleur par défaut : blanc */
+}
+.chrono li:nth-child(1)::before{ /* 1er grade : JSP 1 */
+  background:#fff; /* carré blanc */
+}
+.chrono li:nth-child(2)::before{ /* 2e grade : JSP 2 */
+  background:#F7C600; /* carré jaune */
+}
+.chrono li:nth-child(3)::before{ /* 3e grade : JSP 3 */
+  background:#F28C00; /* carré orange */
+}
+.chrono li:nth-child(4)::before{ /* 4e grade : JSP 4 */
+  background:#2E9B3E; /* carré vert */
+}
+.chrono li:nth-child(5)::before{ /* 5e grade : breveté */
+  background:#000; /* carré noir */
+}
+.chrono .grade{ /* petite ligne qui nomme la couleur du carré */
+  display:block; /* sur sa propre ligne */
+  font-size:.9rem; /* petit texte */
+  font-weight:600; /* semi-gras */
+  color:var(--gris); /* gris-bleu */
+  margin-bottom:.3rem; /* espace sous la ligne */
+}
+.chrono h3{ /* le nom de l'année */
+  color:var(--reflet); /* jaune */
+  padding-top:.2rem; /* aligne le texte avec le rond */
+}
+.chrono p{ /* le texte de l'année */
+  color:#DCE3F5; /* blanc bleuté */
+}
+.activites{ /* les 4 activités en tuiles */
+  display:grid; /* grille */
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); /* colonnes d'au moins 220 px */
+  gap:1rem; /* espace entre tuiles */
+  margin-top:4rem; /* écart avec la partie du dessus */
+}
+.activites div{ /* une tuile */
+  background:rgba(255,255,255,.08); /* fond blanc très transparent */
+  border-top:6px solid var(--france-rouge); /* trait rouge au-dessus */
+  padding:1.3rem; /* espace intérieur */
+}
+.activites p{ /* texte d'une tuile */
+  color:#DCE3F5; /* blanc bleuté */
+}
+
+/* ---------- 9. ÉQUIPE ---------- */
+.fond-bleu-clair{ /* fond bleu pâle */
+  background:var(--bleu-clair); /* bleu très clair */
+}
+.equipe{ /* grille des membres */
+  display:grid; /* grille */
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); /* colonnes d'au moins 220 px */
+  gap:1.5rem; /* espace entre membres */
+  margin-top:2rem; /* écart avec le titre */
+}
+.membre{ /* un membre */
+  position:relative; /* repère pour la légende posée sur la photo */
+  overflow:hidden; /* rien ne dépasse du cadre */
+}
+.membre .photo{ /* photo d'un membre */
+  aspect-ratio:3/4; /* format portrait */
+}
+.membre figcaption{ /* nom et rôle, posés en bas de la photo */
+  position:absolute; /* posé sur la photo */
+  left:0; /* bord gauche */
+  right:0; /* bord droit */
+  bottom:0; /* tout en bas */
+  padding:2.5rem 1rem 1rem; /* grand espace au-dessus pour le dégradé */
+  background:linear-gradient(0deg,rgba(11,27,74,.95),transparent); /* dégradé bleu foncé vers transparent pour lire le texte */
+  color:#fff; /* texte blanc */
+  border-bottom:6px solid var(--feu); /* trait rouge tout en bas */
+}
+.membre strong{ /* le nom */
+  display:block; /* sur sa propre ligne */
+  font-family:var(--titre); /* police des titres */
+  font-size:1.4rem; /* taille */
+  text-transform:uppercase; /* majuscules */
+  line-height:1.1; /* lignes serrées */
+}
+.membre span{ /* le rôle */
+  color:var(--reflet); /* jaune */
+  font-weight:600; /* semi-gras */
+}
+
+/* ---------- 10. CONTACT ET PIED DE PAGE ---------- */
+.contact p{ /* chaque ligne de contact */
+  margin-bottom:.5rem; /* petit espace sous la ligne */
+}
+.appel{ /* grande carte rouge « rejoins-nous » */
+  background:var(--feu); /* fond rouge */
+  color:#fff; /* texte blanc */
+  padding:2.2rem; /* espace intérieur */
+  border-bottom:10px solid var(--bleu); /* gros trait bleu en bas */
+}
+.appel h3{ /* titre de la carte */
+  font-size:2.2rem; /* grand */
+  margin-bottom:.6rem; /* espace sous le titre */
+}
+.appel p{ /* texte de la carte */
+  margin-bottom:1.4rem; /* espace avant le bouton */
+}
+.appel .btn{ /* bouton dans la carte */
+  background:#fff; /* fond blanc */
+  color:var(--feu); /* texte rouge */
+  border-color:#fff; /* bordure blanche */
+}
+.appel .btn:hover{ /* souris sur le bouton */
+  background:var(--bleu); /* fond bleu */
+  color:#fff; /* texte blanc */
+  border-color:var(--bleu); /* bordure bleue */
+}
+.pied{ /* pied de page */
+  position:relative; /* repère pour la bande tricolore */
+  background:var(--bleu); /* fond bleu */
+  color:var(--gris); /* texte gris-bleu */
+  padding-block:2rem; /* espace au-dessus et en dessous */
+  font-size:.9rem; /* petit texte */
+}
+.pied::before{ /* bande ajoutée tout en haut du pied de page */
+  content:""; /* contenu vide */
+  position:absolute; /* placée par rapport au pied de page */
+  top:0; /* tout en haut */
+  left:0; /* bord gauche */
+  right:0; /* bord droit */
+  height:8px; /* épaisseur */
+  background:var(--tricolore); /* bleu, blanc, rouge */
+}
+.pied a{ /* liens du pied de page */
+  color:#fff; /* blancs */
+}
+
+/* ---------- 11. ESPACE JSP : menu à gauche, contenu à droite ---------- */
+.espace{ /* le cadre de toute la page Espace JSP */
+  display:grid; /* grille à deux colonnes */
+  grid-template-columns:270px 1fr; /* menu de 270 px, contenu sur le reste */
+  min-height:100vh; /* au moins la hauteur de l'écran */
+}
+.lateral{ /* le menu vertical à gauche */
+  position:sticky; /* reste en place quand on descend */
+  top:0; /* collé en haut */
+  align-self:start; /* ne s'étire pas sur toute la hauteur de la grille */
+  height:100vh; /* toute la hauteur de l'écran */
+  background:var(--bleu); /* fond bleu pompier */
+  color:#fff; /* texte blanc */
+  padding:1.5rem; /* espace intérieur */
+  display:flex; /* range les éléments en colonne */
+  flex-direction:column; /* du haut vers le bas */
+  gap:2rem; /* espace entre logo, liens et bouton */
+}
+.lateral::after{ /* bande tricolore verticale sur le bord droit du menu */
+  content:""; /* contenu vide */
+  position:absolute; /* placée par rapport au menu */
+  top:0; /* en haut */
+  right:0; /* sur le bord droit */
+  bottom:0; /* jusqu'en bas */
+  width:8px; /* épaisseur */
+  background:linear-gradient(180deg,var(--france-bleu) 0 33.33%,#fff 33.33% 66.66%,var(--france-rouge) 66.66% 100%); /* bleu, blanc, rouge de haut en bas */
+}
+.lateral ul{ /* liste des liens du menu vertical */
+  list-style:none; /* pas de puces */
+  padding:0; /* pas de retrait */
+  display:flex; /* en colonne */
+  flex-direction:column; /* du haut vers le bas */
+  gap:.4rem; /* espace entre liens */
+}
+.lateral li a{ /* un lien du menu vertical */
+  display:block; /* occupe toute la largeur */
+  padding:.7rem 1rem; /* espace intérieur */
+  text-decoration:none; /* pas de soulignement */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  font-size:1.3rem; /* taille */
+  text-transform:uppercase; /* majuscules */
+  border-left:5px solid var(--reflet); /* trait jaune à gauche */
+  background:rgba(255,255,255,.07); /* fond blanc très transparent */
+}
+.lateral li a:hover{ /* souris sur un lien */
+  background:var(--feu); /* fond rouge */
+  border-left-color:#fff; /* le trait devient blanc */
+}
+.lateral .retour{ /* bouton « Retour au site » */
+  margin-top:auto; /* poussé tout en bas du menu */
+  text-align:center; /* texte centré */
+}
+.contenu{ /* la zone de droite avec les devoirs, documents et événements */
+  padding:clamp(1.5rem,4vw,3.5rem); /* espace autour du contenu */
+}
+.bloc{ /* un bloc (devoirs, documents ou événements) */
+  margin-bottom:5rem; /* grand espace sous chaque bloc pour aérer */
+}
+.ligne{ /* une ligne : badge de date + contenu */
+  display:flex; /* badge à gauche, texte à droite */
+  gap:1.8rem; /* espace entre le badge de date et le texte */
+  background:#fff; /* fond blanc */
+  padding:1.5rem 1.8rem 1.5rem 1.5rem; /* grand espace intérieur */
+  margin-bottom:1.5rem; /* espace entre deux lignes */
+  box-shadow:0 2px 8px rgba(18,41,107,.12); /* ombre légère bleutée */
+}
+.contenu .bloc{ /* un bloc dans la zone de contenu de l'Espace JSP */
+  max-width:900px; /* largeur limitée pour que les lignes restent lisibles */
+}
+.contenu h2{ /* les titres de l'Espace JSP */
+  margin-bottom:.6rem; /* espace sous le titre, avant la phrase d'introduction */
+}
+.intro{ /* la phrase d'introduction sous chaque titre */
+  color:#4A4F5E; /* gris foncé */
+  margin-bottom:2rem; /* espace avant la liste */
+}
+.ligne p+p{ /* un paragraphe qui suit un autre dans une ligne */
+  margin-top:.4rem; /* petit espace entre les deux */
+}
+.badge-date{ /* le carré de date à gauche */
+  flex:0 0 auto; /* garde sa taille, ne s'écrase pas */
+  min-width:4.6rem; /* largeur minimale */
+  text-align:center; /* texte centré */
+  background:var(--feu); /* fond rouge */
+  color:#fff; /* texte blanc */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  text-transform:uppercase; /* majuscules */
+  line-height:1; /* lignes serrées */
+  padding:.7rem .4rem; /* espace intérieur */
+  align-self:flex-start; /* en haut de la ligne, sans s'étirer */
+}
+.badge-date strong{ /* le numéro du jour */
+  display:block; /* sur sa propre ligne */
+  font-size:2.2rem; /* grand */
+}
+.badge-date.bleu{ /* variante bleue (pour les événements) */
+  background:var(--bleu); /* fond bleu pompier */
+}
+.ligne h3{ /* titre d'un devoir ou d'un événement */
+  color:var(--bleu); /* bleu pompier */
+}
+.ligne .detail{ /* ligne d'infos (heure, lieu...) */
+  font-weight:600; /* semi-gras */
+  color:var(--feu); /* rouge */
+}
+.fichiers{ /* grille des documents à télécharger */
+  list-style:none; /* pas de puces */
+  padding:0; /* pas de retrait */
+  display:grid; /* grille */
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); /* colonnes d'au moins 210 px */
+  gap:1.5rem; /* espace entre documents */
+}
+.fichiers a{ /* un document cliquable */
+  display:block; /* occupe toute la tuile */
+  height:100%; /* toutes les tuiles ont la même hauteur */
+  background:#fff; /* fond blanc */
+  padding:1.2rem; /* espace intérieur */
+  text-decoration:none; /* pas de soulignement */
+  font-weight:600; /* semi-gras */
+  color:var(--bleu); /* bleu pompier */
+  border-bottom:6px solid var(--france-bleu); /* trait bleu en bas */
+  box-shadow:0 2px 8px rgba(18,41,107,.12); /* ombre légère */
+}
+.fichiers a::before{ /* étiquette « PDF » ajoutée avant le nom */
+  content:"PDF"; /* le texte de l'étiquette */
+  display:block; /* sur sa propre ligne */
+  width:fit-content; /* largeur du texte */
+  background:var(--feu); /* fond rouge */
+  color:#fff; /* texte blanc */
+  font-family:var(--titre); /* police des titres */
+  font-weight:800; /* très gras */
+  padding:.1rem .6rem; /* espace intérieur */
+  margin-bottom:.7rem; /* espace sous l'étiquette */
+}
+.fichiers a:hover{ /* souris sur un document */
+  border-bottom-color:var(--feu); /* le trait devient rouge */
+}
+
+/* ---------- 12. TÉLÉPHONE ET TABLETTE ---------- */
+@media (max-width:900px){ /* règles appliquées si l'écran fait 900 px de large ou moins */
+  .hero .wrap{ /* contenu du hero */
+    grid-template-columns:1fr; /* une seule colonne : la carte passe sous le titre */
+  }
+  .hero{ /* le hero */
+    min-height:0; /* plus de hauteur minimale imposée */
+  }
+  .deux,.formation-grille{ /* mises en page à deux colonnes */
+    grid-template-columns:1fr; /* une seule colonne */
+  }
+  .violet{ /* bloc Septembre violet */
+    grid-template-columns:1fr; /* une seule colonne : l'écusson passe sous le texte */
+  }
+  .deux.haut .photo{ /* photo de la section association */
+    position:static; /* ne reste plus collée sur petit écran */
+  }
+  .espace{ /* page Espace JSP */
+    grid-template-columns:1fr; /* menu au-dessus du contenu */
+  }
+  .lateral{ /* le menu vertical devient une barre en haut */
+    position:static; /* ne reste plus collé */
+    height:auto; /* hauteur selon le contenu */
+    gap:1rem; /* espace réduit */
+  }
+  .lateral::after{ /* bande tricolore du menu */
+    display:none; /* masquée sur téléphone */
+  }
+  .lateral ul{ /* liens du menu */
+    flex-direction:row; /* côte à côte */
+    flex-wrap:wrap; /* retour à la ligne si besoin */
+  }
+  .lateral .retour{ /* bouton retour */
+    margin-top:0; /* plus poussé en bas */
+  }
+}
+@media (prefers-reduced-motion:reduce){ /* si la personne a demandé moins d'animations */
+  html{ /* la page */
+    scroll-behavior:auto; /* défilement normal */
+  }
+  .btn{ /* les boutons */
+    transition:none; /* pas de changement progressif */
+  }
+}

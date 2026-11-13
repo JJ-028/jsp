@@ -1,0 +1,169 @@
+<!DOCTYPE html> <!-- Indique au navigateur que c'est une page web moderne (HTML5) -->
+<!--
+  ============ NOTE : OÙ METTRE LES PHOTOS ET LES DOSSIERS ============
+  Dans ton dépôt GitHub, tout se range comme ça :
+    index.html ............. cette page (page publique)
+    style.css .............. les couleurs et la mise en page
+    espace-jsp.html ........ l'espace JSP CHIFFRÉ (fabriqué par outil-chiffrement.html, ne pas le modifier à la main)
+    images/ ................ TOUTES les photos du site (publiques, visibles par tout le monde) :
+        logo.png ........... le logo (de préférence sur fond transparent)
+        hero.jpg ........... la grande photo horizontale du haut de la page d'accueil
+        asso.jpg ........... la photo de la section « L'association »
+        ecusson.png ........ l'écusson Septembre violet (section « L'association »)
+        membre1.jpg à membre4.jpg ... les photos des membres de l'équipe (format portrait)
+    prive/ ................. sur TON ordinateur uniquement (jamais publié) :
+        espace-jsp.html .... la version en clair de l'espace JSP (celle que tu modifies)
+        docs/ .............. les PDF de l'espace JSP (reglement.pdf, secourisme.pdf...)
+  Les noms de fichiers doivent être écrits exactement pareil, avec les mêmes majuscules et la même extension.
+-->
+<html lang="fr"> <!-- Début de la page ; lang="fr" = en français -->
+<head> <!-- Début des infos techniques (invisibles sur la page) -->
+<meta charset="utf-8"> <!-- Affiche correctement les accents -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Adapte la page à la largeur d'un téléphone -->
+<title>JSP de la Pévèle – Jeunes sapeurs-pompiers</title> <!-- Titre de l'onglet et des résultats Google -->
+<meta name="description" content="Section de jeunes sapeurs-pompiers de la Pévèle : formation, recrutement et présentation de l’association."> <!-- Phrase affichée sous le titre dans Google -->
+<link rel="icon" href="images/logo.png"> <!-- Petite icône de l'onglet (ton logo). NOTE : le fichier se trouve dans le dossier images/ et s'appelle logo.png -->
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Prépare la connexion à Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Idem pour les fichiers de polices -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet"> <!-- Charge les polices Barlow Condensed (titres) et Barlow (texte) -->
+<link rel="stylesheet" href="style.css"> <!-- Relie la page au fichier de style -->
+</head> <!-- Fin des infos techniques -->
+<body> <!-- Début de la partie visible -->
+
+<header class="entete"> <!-- Barre bleue du haut, avec bande tricolore dessous -->
+  <div class="wrap"> <!-- Conteneur centré -->
+    <a class="marque" href="#haut"> <!-- Logo + nom : un clic remonte en haut -->
+      <img src="images/logo.png" alt="" onerror="this.style.display='none'"> <!-- Ton logo (images/logo.png) ; caché s'il n'existe pas encore -->
+      <span>JSP de la Pévèle<small>Jeunes sapeurs-pompiers</small></span> <!-- Nom de l'asso et sous-titre en petit jaune -->
+    </a> <!-- Fin du lien logo + nom -->
+    <nav aria-label="Navigation principale"> <!-- Zone de navigation -->
+      <ul class="menu"> <!-- Liste des liens -->
+        <li><a href="#recrutement">Recrutement</a></li> <!-- Descend à la carte de recrutement -->
+        <li><a href="#asso">L’association</a></li> <!-- Descend à la présentation -->
+        <li><a href="#formation">Formation</a></li> <!-- Descend à la formation -->
+        <li><a href="#equipe">Équipe</a></li> <!-- Descend à l'équipe -->
+        <li><a href="#contact">Contact</a></li> <!-- Descend au contact -->
+        <li><a class="acces" href="espace-jsp.html">Espace JSP</a></li> <!-- Bouton rouge vers l'espace protégé -->
+      </ul> <!-- Fin de la liste -->
+    </nav> <!-- Fin de la navigation -->
+  </div> <!-- Fin du conteneur -->
+</header> <!-- Fin de l'en-tête -->
+
+<main id="haut"> <!-- Contenu principal ; id="haut" = cible du lien du logo -->
+
+  <div class="hero"> <!-- Grand écran d'accueil avec la photo de fond. NOTE PHOTO : mets ta grande photo horizontale dans le dossier images/ sous le nom hero.jpg (pour changer le nom, modifie la ligne « .hero » dans style.css) -->
+    <div class="wrap"> <!-- Conteneur centré : deux colonnes (texte / carte) -->
+      <div> <!-- Colonne de gauche : titre et boutons -->
+        <h1>Savoir pour mieux servir <span>Aujourd’hui JSP, demain pompier.</span></h1> <!-- Gros titre ; le span met la 2e partie en rouge sur blanc -->
+        <p>Sport, secourisme, manœuvres, dépassement de soi et esprit d’équipe : la section des jeunes sapeurs-pompiers de la Pévèle te forme au service des autres.</p> <!-- Phrase d'accroche -->
+        <div class="boutons"> <!-- Groupe de deux boutons -->
+          <a class="btn" href="#recrutement">Rejoindre les JSP</a> <!-- Bouton rouge vers le recrutement -->
+          <a class="btn clair" href="#formation">Voir la formation</a> <!-- Bouton transparent vers la formation -->
+        </div> <!-- Fin des boutons -->
+      </div> <!-- Fin de la colonne de gauche -->
+      <aside class="carte-recrut" id="recrutement"> <!-- Colonne de droite : carte blanche du prochain recrutement -->
+        <h2>Prochain recrutement</h2> <!-- Titre de la carte -->
+        <p class="date">[DATE À DÉCIDER]</p> <!-- Date en grand : remplace le texte entre crochets quand elle sera connue -->
+        <p>Dossier d’inscription : une lettre de motivation et un CV. [LIEU ET HORAIRES]</p> <!-- Ce qu'il faut savoir pour candidater -->
+        <a class="btn" href="#contact">Envoyer un dossier</a> <!-- Bouton qui descend vers le contact -->
+      </aside> <!-- Fin de la carte -->
+    </div> <!-- Fin du conteneur -->
+  </div> <!-- Fin du hero -->
+
+  <div class="wrap essentiel"> <!-- Bandeau « l'essentiel » qui chevauche le bas du hero -->
+    <div><h3>Âge</h3><p>Entrée à 13 ou 14 ans</p></div> <!-- Info 1 : âge d'entrée -->
+    <div><h3>Durée</h3><p>4 ans, jusqu’au brevet</p></div> <!-- Info 2 : durée de la formation -->
+    <div><h3>Rythme</h3><p>Tous les samedis de 14 h à 18 h (hors vacances scolaires)</p></div> <!-- Info 3 : quand ont lieu les séances -->
+    <div><h3>Lieux</h3><p>École Marie Navard à Templeuve et casernes de Bersée, Cysoing et Genech</p></div> <!-- Info 4 : où -->
+  </div> <!-- Fin du bandeau -->
+
+  <section id="asso"> <!-- Section de présentation de l'association -->
+    <div class="wrap deux haut"> <!-- Deux colonnes : texte à gauche, photo à droite (en haut) -->
+      <div class="asso-texte"> <!-- Colonne de texte -->
+        <h2>L’association</h2> <!-- Titre -->
+
+        <h3>Les JSP, c’est quoi ?</h3> <!-- Premier sous-titre -->
+        <p>Les JSP, ou jeunes sapeurs-pompiers, forment une association qui fait découvrir le métier de pompier, sur quatre années, à des jeunes motivés à l’idée de le devenir.</p> <!-- Premier paragraphe -->
+        <p>Les JSP apprennent les gestes qui sauvent, la vie en collectif et ce que signifie vraiment la devise des sapeurs-pompiers : « Courage et dévouement ». On y apprend à se dépasser et à évoluer au sein d’un groupe soudé, guidé par le même rêve et par les valeurs communes à tous les JSP de France : le dévouement, le courage, la discipline, la patrie, l’honnêteté et l’honneur.</p> <!-- Deuxième paragraphe : les valeurs -->
+
+        <h3 class="titre-violet">Septembre violet</h3> <!-- Sous-titre en violet : l'opération de solidarité -->
+        <div class="violet"> <!-- Bloc à deux colonnes : texte à gauche, écusson à droite -->
+          <div> <!-- Colonne de texte -->
+            <p>Septembre violet est un mouvement créé par les JSP de la Pévèle. Il met en avant la maladie de Chiari. À cette occasion, des écussons sont en vente et tous les bénéfices sont reversés au CHU de Lille (service de neurochirurgie).</p> <!-- Présentation de l'opération -->
+            <p>La maladie de Chiari est une anomalie de la jonction entre le cerveau et la colonne vertébrale. Elle peut provoquer des maux de tête, des douleurs cervicales, des troubles de l’équilibre ou d’autres symptômes neurologiques.</p> <!-- Explication de la maladie -->
+          </div> <!-- Fin de la colonne de texte -->
+          <figure> <!-- Colonne de droite : l'écusson et le lien pour en commander -->
+            <img src="images/ecusson.png" alt="Écusson Septembre violet" onerror="this.style.display='none'"> <!-- NOTE PHOTO : mets l'image de l'écusson dans le dossier images/ sous le nom ecusson.png ; cachée tant qu'elle n'existe pas -->
+            <a class="btn" href="#contact">Commander un écusson</a> <!-- Bouton de commande. NOTE : remplace #contact par le lien de commande, par exemple https://... -->
+          </figure> <!-- Fin de la colonne de l'écusson -->
+        </div> <!-- Fin du bloc Septembre violet -->
+
+        <h3>La section</h3> <!-- Sous-titre : la section aujourd'hui -->
+        <p>Actuellement, la section est composée de 15 JSP 2 et de 9 JSP 4. Ces JSP ont la chance de participer aux cérémonies et aux commémorations aux côtés des sapeurs-pompiers de la Pévèle, la plus marquante étant le défilé du 14 juillet à Lille.</p> <!-- Premier paragraphe : effectifs et cérémonies -->
+        <p>Nous sommes principalement basés à Templeuve et encadrés par des pompiers volontaires ou professionnels des casernes alentour.</p> <!-- Deuxième paragraphe : lieu et encadrement -->
+      </div> <!-- Fin de la colonne de texte -->
+      <div class="photo decale" style="background-image:url(images/asso.jpg)">Photo de l’association (images/asso.jpg)</div> <!-- NOTE PHOTO : mets ta photo dans le dossier images/ sous le nom asso.jpg ; un bloc rouge est décalé derrière ; le texte s'affiche tant qu'il n'y a pas de photo -->
+    </div> <!-- Fin des deux colonnes -->
+  </section> <!-- Fin de la présentation -->
+
+  <section class="formation" id="formation"> <!-- Section bleue aux bords en diagonale : la formation -->
+    <div class="wrap"> <!-- Conteneur centré -->
+      <div class="formation-grille"> <!-- Deux colonnes : texte / frise des grades -->
+        <div> <!-- Colonne de gauche -->
+          <h2>La formation</h2> <!-- Titre -->
+          <p>La formation dure quatre ans. Pendant ces quatre années, les jeunes explorent les trois grandes parties du métier de pompier : les manœuvres, le secourisme et le sport.</p> <!-- Premier paragraphe -->
+          <p>Ils sont placés dans des situations qui les poussent à se dépasser et à donner le meilleur d’eux-mêmes, ensemble. Ils apprennent et progressent côte à côte, car le mot d’ordre chez les JSP, c’est la cohésion : on part ensemble au feu, on repart tous ensemble.</p> <!-- Deuxième paragraphe -->
+        </div> <!-- Fin de la colonne de gauche -->
+        <ol class="chrono"> <!-- Frise verticale : un carré de la couleur du grade est ajouté devant chaque ligne par le CSS -->
+          <li><span class="grade">Carré blanc</span><h3>JSP 1 · Découverte</h3><p>Le monde des pompiers, le matériel et le sport.</p></li> <!-- Grade 1 : blanc -->
+          <li><span class="grade">Carré jaune</span><h3>JSP 2 · Bases</h3><p>Manœuvres d’incendie et découverte du monde opérationnel.</p></li> <!-- Grade 2 : jaune -->
+          <li><span class="grade">Carré orange</span><h3>JSP 3 · Approfondir</h3><p>Secourisme, techniques opérationnelles, vie en équipe.</p></li> <!-- Grade 3 : orange -->
+          <li><span class="grade">Carré vert</span><h3>JSP 4 · Brevet</h3><p>Préparation et passage du brevet national de JSP.</p></li> <!-- Grade 4 : vert -->
+          <li><span class="grade">Carré noir</span><h3>Breveté</h3><p>Le jeune breveté peut intégrer la caserne la plus proche de chez lui en tant que sapeur-pompier volontaire.</p></li> <!-- Grade 5 : noir -->
+        </ol> <!-- Fin de la frise -->
+      </div> <!-- Fin de la grille -->
+      <div class="activites"> <!-- Les 4 activités en tuiles -->
+        <div><h3>Sport</h3><p>Condition physique, parcours, endurance et cohésion.</p></div> <!-- Activité : sport -->
+        <div><h3>Secourisme</h3><p>Massage cardiaque, défibrillateur, protection et alerte.</p></div> <!-- Activité : secourisme -->
+        <div><h3>Manœuvres</h3><p>Dévidoirs, lances, échelles et travail en équipe.</p></div> <!-- Activité : manœuvres -->
+        <div><h3>Cérémonies</h3><p>Défilés et commémorations, en uniforme, aux côtés des sapeurs-pompiers.</p></div> <!-- Activité : cérémonies -->
+      </div> <!-- Fin des activités -->
+    </div> <!-- Fin du conteneur -->
+  </section> <!-- Fin de la formation -->
+
+  <section class="fond-bleu-clair" id="equipe"> <!-- Section sur fond bleu pâle : l'équipe -->
+    <div class="wrap"> <!-- Conteneur centré -->
+      <h2>L’équipe</h2> <!-- Titre -->
+      <div class="equipe"> <!-- Grille des membres -->
+        <figure class="membre"><div class="photo" style="background-image:url(images/membre1.jpg)">Photo</div><figcaption><strong>Adjudant Dubus</strong><span>Président de l’association</span></figcaption></figure> <!-- Membre 1 : photo avec nom et rôle posés dessus. NOTE PHOTO : mets la photo dans images/ sous le nom membre1.jpg (format portrait) -->
+        <figure class="membre"><div class="photo" style="background-image:url(images/membre2.jpg)">Photo</div><figcaption><strong>Adjudant Poiret</strong><span>Responsable pédagogique</span></figcaption></figure> <!-- Membre 2 : photo images/membre2.jpg -->
+        <figure class="membre"><div class="photo" style="background-image:url(images/membre3.jpg)">Photo</div><figcaption><strong>[Prénom NOM]</strong><span>Encadrant</span></figcaption></figure> <!-- Membre 3 : photo images/membre3.jpg -->
+        <figure class="membre"><div class="photo" style="background-image:url(images/membre4.jpg)">Photo</div><figcaption><strong>[Prénom NOM]</strong><span>Encadrant</span></figcaption></figure> <!-- Membre 4 : photo images/membre4.jpg ; pour ajouter un membre, copie-colle une ligne et change le nom de la photo -->
+      </div> <!-- Fin de la grille -->
+    </div> <!-- Fin du conteneur -->
+  </section> <!-- Fin de l'équipe -->
+
+  <section class="contact" id="contact"> <!-- Section de contact -->
+    <div class="wrap deux"> <!-- Deux colonnes : infos à gauche, carte rouge à droite -->
+      <div> <!-- Colonne des infos -->
+        <h2>Contact</h2> <!-- Titre -->
+        <p><strong>Adresse :</strong> École Marie Navard, Templeuve [ADRESSE COMPLÈTE À AJOUTER]</p> <!-- Où se trouve la section -->
+        <p><strong>Mail :</strong> <a href="mailto:contact@exemple.fr">[contact@exemple.fr]</a></p> <!-- Adresse mail cliquable : à changer aux deux endroits -->
+        <p><strong>Entraînements :</strong> tous les samedis de 14 h à 18 h (hors vacances scolaires)</p> <!-- Quand ont lieu les séances -->
+      </div> <!-- Fin de la colonne des infos -->
+      <div class="appel"> <!-- Grande carte rouge -->
+        <h3>Rejoins-nous !</h3> <!-- Titre de la carte -->
+        <p>Tu as l’âge requis et l’envie de te dépasser pour les autres ? Envoie-nous ta lettre de motivation et ton CV.</p> <!-- Message d'appel -->
+        <a class="btn" href="mailto:contact@exemple.fr">Écrire aux encadrants</a> <!-- Bouton qui ouvre le mail (même adresse à changer) -->
+      </div> <!-- Fin de la carte -->
+    </div> <!-- Fin des deux colonnes -->
+  </section> <!-- Fin du contact -->
+
+</main> <!-- Fin du contenu principal -->
+
+<footer class="pied"> <!-- Pied de page bleu (la bande tricolore est ajoutée en haut par le CSS) -->
+  <div class="wrap">© 2026 JSP de la Pévèle · <a href="espace-jsp.html">Espace JSP</a></div> <!-- Copyright + lien vers l'espace privé -->
+</footer> <!-- Fin du pied de page -->
+
+</body> <!-- Fin de la partie visible -->
+</html> <!-- Fin de la page -->

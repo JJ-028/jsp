@@ -1,0 +1,3 @@
+# Ce fichier dit à Git quels éléments NE PAS publier sur GitHub
+prive/
+# prive/ = la version en clair de l'espace JSP et ses PDF : ils restent sur ton ordinateur
