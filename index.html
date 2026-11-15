@@ -26,7 +26,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Adapte la page à la largeur d'un téléphone -->
 <title>JSP de la Pévèle – Jeunes sapeurs-pompiers</title> <!-- Titre de l'onglet et des résultats Google -->
 <meta name="description" content="Section de jeunes sapeurs-pompiers de la Pévèle : formation, recrutement et présentation de l’association."> <!-- Phrase affichée sous le titre dans Google -->
-<link rel="icon" href="images/logo.png"> <!-- Petite icône de l'onglet (ton logo). NOTE : le fichier se trouve dans le dossier images/ et s'appelle logo.png -->
+<link rel="icon" href="logo.png"> <!-- Petite icône de l'onglet (ton logo). NOTE : le fichier se trouve dans le dossier images/ et s'appelle logo.png -->
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Prépare la connexion à Google Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Idem pour les fichiers de polices -->
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet"> <!-- Charge les polices Barlow Condensed (titres) et Barlow (texte) -->
@@ -37,7 +37,7 @@
 <header class="entete"> <!-- Barre bleue du haut, avec bande tricolore dessous -->
   <div class="wrap"> <!-- Conteneur centré -->
     <a class="marque" href="#haut"> <!-- Logo + nom : un clic remonte en haut -->
-      <img src="images/logo.png" alt="" onerror="if(this.dataset.essai){this.style.display='none'}else{this.dataset.essai=1;this.src='logo.png'}"> <!-- Ton logo (images/logo.png) ; si le fichier est introuvable on essaie logo.png à la racine, sinon l'image est cachée -->
+      <img src="logo.png" alt="" onerror="if(this.dataset.essai){this.style.display='none'}else{this.dataset.essai=1;this.src='logo.png'}"> <!-- Ton logo (images/logo.png) ; si le fichier est introuvable on essaie logo.png à la racine, sinon l'image est cachée -->
       <span>JSP de la Pévèle<small>Jeunes sapeurs-pompiers</small></span> <!-- Nom de l'asso et sous-titre en petit jaune -->
     </a> <!-- Fin du lien logo + nom -->
     <nav aria-label="Navigation principale"> <!-- Zone de navigation -->
@@ -58,7 +58,7 @@
   <div class="hero"> <!-- Grand écran d'accueil avec la photo de fond. NOTE PHOTO : mets ta grande photo horizontale dans le dossier images/ sous le nom hero.jpg (pour changer le nom, modifie la ligne « .hero » dans style.css) -->
     <div class="wrap"> <!-- Conteneur centré : deux colonnes (texte / carte) -->
       <div> <!-- Colonne de gauche : logo, titre et boutons -->
-        <img class="logo-hero" src="images/logo.png" alt="Logo des JSP de la Pévèle" onerror="if(this.dataset.essai){this.style.display='none'}else{this.dataset.essai=1;this.src='logo.png'}"> <!-- Grand logo en haut de l'intro. NOTE : c'est le fichier images/logo.png ; si le fichier est introuvable on essaie logo.png à la racine, sinon l'image est cachée -->
+        <img class="logo-hero" src="logo.png" alt="Logo des JSP de la Pévèle" onerror="if(this.dataset.essai){this.style.display='none'}else{this.dataset.essai=1;this.src='logo.png'}"> <!-- Grand logo en haut de l'intro. NOTE : c'est le fichier images/logo.png ; si le fichier est introuvable on essaie logo.png à la racine, sinon l'image est cachée -->
         <h1>Savoir pour mieux servir <span>Aujourd’hui JSP, demain pompier.</span></h1> <!-- Gros titre ; le span met la 2e partie en rouge sur blanc -->
         <p>Sport, secourisme, manœuvres, dépassement de soi et esprit d’équipe : la section des jeunes sapeurs-pompiers de la Pévèle te forme au service des autres.</p> <!-- Phrase d'accroche -->
         <div class="boutons"> <!-- Groupe de deux boutons -->
@@ -99,7 +99,7 @@
           </div> <!-- Fin de la colonne de texte -->
           <figure> <!-- Colonne de droite : l'écusson et le lien pour en commander -->
             <div class="cadre-ecusson"> <!-- Cadre violet réservé à la photo de l'écusson -->
-              <img src="images/ecusson.png" alt="Écusson Septembre violet" onerror="this.remove()"> <!-- NOTE PHOTO : mets la photo de l'écusson dans le dossier images/ sous le nom ecusson.png ; si elle n'existe pas, cette ligne disparaît et le texte du cadre s'affiche -->
+              <img src="ecusson.png" alt="Écusson Septembre violet" onerror="this.remove()"> <!-- NOTE PHOTO : mets la photo de l'écusson dans le dossier images/ sous le nom ecusson.png ; si elle n'existe pas, cette ligne disparaît et le texte du cadre s'affiche -->
               <span>Photo de l’écusson<br>(images/ecusson.png)</span> <!-- Texte affiché tant que la photo n'est pas là ; il disparaît tout seul quand la photo existe -->
             </div> <!-- Fin du cadre de l'écusson -->
             <a class="btn" href="#contact">Commander un écusson</a> <!-- Bouton de commande. NOTE : remplace #contact par le lien de commande, par exemple https://... -->
@@ -110,7 +110,7 @@
         <p>Actuellement, la section est composée de 15 JSP 2 et de 9 JSP 4. Ces JSP ont la chance de participer aux cérémonies et aux commémorations aux côtés des sapeurs-pompiers de la Pévèle, la plus marquante étant le défilé du 14 juillet à Lille.</p> <!-- Premier paragraphe : effectifs et cérémonies -->
         <p>Nous sommes principalement basés à Templeuve et encadrés par des pompiers volontaires ou professionnels des casernes alentour.</p> <!-- Deuxième paragraphe : lieu et encadrement -->
       </div> <!-- Fin de la colonne de texte -->
-      <div class="photo decale" style="background-image:url(images/asso.jpg)"></div> <!-- NOTE PHOTO : mets ta photo dans le dossier images/ sous le nom asso.jpg ; un bloc rouge est décalé derrière ; le texte s'affiche tant qu'il n'y a pas de photo -->
+      <div class="photo decale" style="background-image:url(asso.jpg)"></div> <!-- NOTE PHOTO : mets ta photo dans le dossier images/ sous le nom asso.jpg ; un bloc rouge est décalé derrière ; le texte s'affiche tant qu'il n'y a pas de photo -->
     </div> <!-- Fin des deux colonnes -->
   </section> <!-- Fin de la présentation -->
 
@@ -143,8 +143,8 @@
     <div class="wrap"> <!-- Conteneur centré -->
       <h2>L’équipe</h2> <!-- Titre -->
       <div class="equipe" id="equipe-liste"> <!-- Grille des membres. Si le serveur Google est configuré, elle est remplie automatiquement avec l'équipe modifiée depuis l'espace JSP (mode encadrant) ; sinon on garde les deux personnes écrites ci-dessous. -->
-        <figure class="membre"><div class="photo" style="background-image:url(images/membre1.jpg)">Photo</div><figcaption><strong>Adjudant Dubus</strong><span>Président de l’association</span></figcaption></figure> <!-- Membre 1 (version de secours). NOTE PHOTO : mets la photo dans images/ sous le nom membre1.jpg (format portrait) -->
-        <figure class="membre"><div class="photo" style="background-image:url(images/membre2.jpg)">Photo</div><figcaption><strong>Adjudant Poiret</strong><span>Responsable pédagogique</span></figcaption></figure> <!-- Membre 2 (version de secours) : photo images/membre2.jpg -->
+        <figure class="membre"><div class="photo" style="background-image:url(membre1.jpg)">Photo</div><figcaption><strong>Adjudant Dubus</strong><span>Président de l’association</span></figcaption></figure> <!-- Membre 1 (version de secours). NOTE PHOTO : mets la photo dans images/ sous le nom membre1.jpg (format portrait) -->
+        <figure class="membre"><div class="photo" style="background-image:url(membre2.jpg)">Photo</div><figcaption><strong>Adjudant Poiret</strong><span>Responsable pédagogique</span></figcaption></figure> <!-- Membre 2 (version de secours) : photo images/membre2.jpg -->
       </div> <!-- Fin de la grille -->
     </div> <!-- Fin du conteneur -->
   </section> <!-- Fin de l'équipe -->
